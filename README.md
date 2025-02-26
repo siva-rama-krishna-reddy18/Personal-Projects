@@ -113,7 +113,9 @@ Enhanced error recovery
 Custom vocabulary support
 .
 **Acknowledgments**
+
 Google Cloud Platform
+
 RecordRTC library for audio recording capabilities
 
 **Author**
@@ -122,4 +124,5 @@ kunchalas2023@fau.edu
 GCP Project Information
 
 Project Name/Id: cproject/cproject-436307
+
 Cloud Run Service Name: audio-analyzer
