@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "output_directory": "analysis\\20241117_040847_upload_20241117_040847_tts_audio_18372b93-3705-4a39-bf81-a10ffcce47d3",
+  "files": {
+    "original_audio": "analysis\\20241117_040847_upload_20241117_040847_tts_audio_18372b93-3705-4a39-bf81-a10ffcce47d3\\original_upload_20241117_040847_tts_audio_18372b93-3705-4a39-bf81-a10ffcce47d3.mp3",
+    "converted_audio": "analysis\\20241117_040847_upload_20241117_040847_tts_audio_18372b93-3705-4a39-bf81-a10ffcce47d3\\converted_audio.wav",
+    "transcript": "analysis\\20241117_040847_upload_20241117_040847_tts_audio_18372b93-3705-4a39-bf81-a10ffcce47d3\\transcript.txt"
+  },
+  "transcript": "Very bad.",
+  "sentiment_analysis": {
+    "overall_sentiment": "negative",
+    "confidence_score": 0.09999999403953552,
+    "sentiment_score": -0.800000011920929,
+    "sentiment_magnitude": 0.800000011920929,
+    "key_phrases": [],
+    "emotional_tones": [
+      "Negative",
+      "Moderately Negative"
+    ]
+  }
+}

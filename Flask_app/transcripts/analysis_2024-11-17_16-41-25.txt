@@ -1,0 +1,8 @@
+Transcript:
+Very good.
+
+Sentiment Analysis:
+Overall Sentiment: positive
+Confidence Score: 95.0%
+
+Timestamp: 2024-11-17 16:41:25

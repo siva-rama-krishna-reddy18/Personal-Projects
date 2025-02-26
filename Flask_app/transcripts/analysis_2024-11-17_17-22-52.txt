@@ -1,0 +1,8 @@
+Transcript:
+What are you doing?
+
+Sentiment Analysis:
+Overall Sentiment: negative
+Confidence Score: 45.0%
+
+Timestamp: 2024-11-17 17:22:52

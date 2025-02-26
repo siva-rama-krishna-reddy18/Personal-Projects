@@ -1,0 +1,8 @@
+Transcript:
+Very bad.
+
+Sentiment Analysis:
+Overall Sentiment: negative
+Confidence Score: 10.0%
+
+Timestamp: 2024-11-17 22:59:41

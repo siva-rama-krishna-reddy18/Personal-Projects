@@ -1,0 +1,8 @@
+Transcript:
+A b, c, d, e, f, g. H. I j k.
+
+Sentiment Analysis:
+Overall Sentiment: neutral
+Confidence Score: 50.0%
+
+Timestamp: 2024-11-17 17:27:59

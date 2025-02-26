@@ -1,0 +1,22 @@
+{
+  "status": "success",
+  "output_directory": "analysis\\20241117_034951_upload_20241117_034951_tts_audio_b8729f15-932f-4790-af5a-e610f1a26c4b",
+  "files": {
+    "original_audio": "analysis\\20241117_034951_upload_20241117_034951_tts_audio_b8729f15-932f-4790-af5a-e610f1a26c4b\\original_upload_20241117_034951_tts_audio_b8729f15-932f-4790-af5a-e610f1a26c4b.mp3",
+    "converted_audio": "analysis\\20241117_034951_upload_20241117_034951_tts_audio_b8729f15-932f-4790-af5a-e610f1a26c4b\\converted_audio.wav",
+    "transcript": "analysis\\20241117_034951_upload_20241117_034951_tts_audio_b8729f15-932f-4790-af5a-e610f1a26c4b\\transcript.txt"
+  },
+  "transcript": "Hello, how are you?",
+  "sentiment_analysis": {
+    "overall_sentiment": "neutral",
+    "confidence_score": 0.5,
+    "sentiment_score": 0.0,
+    "sentiment_magnitude": 0.0,
+    "key_phrases": [
+      "Hello, how are"
+    ],
+    "emotional_tones": [
+      "Neutral"
+    ]
+  }
+}

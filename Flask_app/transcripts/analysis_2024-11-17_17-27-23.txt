@@ -1,0 +1,8 @@
+Transcript:
+Today, Sunday.
+
+Sentiment Analysis:
+Overall Sentiment: negative
+Confidence Score: 45.0%
+
+Timestamp: 2024-11-17 17:27:23

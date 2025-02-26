@@ -1,0 +1,8 @@
+Transcript:
+This is my new project.
+
+Sentiment Analysis:
+Overall Sentiment: positive
+Confidence Score: 65.0%
+
+Timestamp: 2024-11-17 16:51:17

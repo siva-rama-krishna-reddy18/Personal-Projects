@@ -1,0 +1,14 @@
+{
+  "status": "success",
+  "transcript": "Hello, how are you?",
+  "sentiment_analysis": {
+    "overall_sentiment": "neutral",
+    "confidence_score": 0.5,
+    "key_phrases": [
+      "Hello, how are"
+    ],
+    "emotional_tones": [
+      "Neutral"
+    ]
+  }
+}

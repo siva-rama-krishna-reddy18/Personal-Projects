@@ -1,0 +1,609 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Audio Analyzer</title>
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --secondary-color: #1e40af;
+            --success-color: #22c55e;
+            --danger-color: #ef4444;
+            --background-color: #f3f4f6;
+            --border-color: #e2e8f0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: var(--background-color);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 20px;
+        }
+
+        .sidebar {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            height: fit-content;
+        }
+
+        .main-content {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .heading {
+            color: var(--secondary-color);
+            text-align: center;
+            margin: 0 0 20px 0;
+            font-size: 1.8em;
+        }
+
+        .controls {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .button {
+            padding: 12px 20px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            color: white;
+            font-size: 1rem;
+            width: 100%;
+        }
+
+        .record-button {
+            background-color: var(--danger-color);
+        }
+
+        .record-button.recording {
+            background-color: var(--success-color);
+        }
+
+        .upload-button {
+            background-color: var(--primary-color);
+        }
+
+        .clear-button {
+            background-color: #64748b;
+        }
+
+        .result-section {
+            margin-top: 20px;
+        }
+
+        .result-card {
+            background: white;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            margin-bottom: 20px;
+            overflow: hidden;
+        }
+
+        .result-card-header {
+            padding: 15px;
+            background: #f8fafc;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .result-card-title {
+            margin: 0;
+            color: var(--secondary-color);
+            font-size: 1.2em;
+        }
+
+        .result-card-content {
+            padding: 15px;
+        }
+
+        .transcript {
+            background-color: #f8fafc;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 10px 0;
+            white-space: pre-wrap;
+            font-size: 1.1em;
+            line-height: 1.6;
+            border: 1px solid var(--border-color);
+        }
+
+        .sentiment {
+            text-align: center;
+            font-size: 1.2em;
+            margin: 15px 0;
+            padding: 10px;
+            border-radius: 6px;
+            font-weight: 500;
+        }
+
+        .sentiment.positive {
+            background-color: #dcfce7;
+            color: #16a34a;
+        }
+
+        .sentiment.negative {
+            background-color: #fee2e2;
+            color: #dc2626;
+        }
+
+        .sentiment.neutral {
+            background-color: #f3f4f6;
+            color: #4b5563;
+        }
+
+        .confidence-score {
+            text-align: center;
+            font-size: 1.1em;
+            color: var(--secondary-color);
+            margin-top: 10px;
+        }
+
+        .saved-files {
+            margin-top: 20px;
+            border-top: 1px solid var(--border-color);
+            padding-top: 20px;
+        }
+
+        .file-list {
+            margin-top: 15px;
+        }
+
+        .file-item {
+            padding: 15px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            background: white;
+        }
+
+        .file-item:hover {
+            background-color: #f8fafc;
+            transform: translateY(-1px);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+
+        .file-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .file-timestamp {
+            font-size: 0.9em;
+            color: #64748b;
+        }
+
+        .file-sentiment-badge {
+            font-size: 0.8em;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-weight: 500;
+        }
+
+        .file-sentiment-badge.positive {
+            background-color: #dcfce7;
+            color: #16a34a;
+        }
+
+        .file-sentiment-badge.negative {
+            background-color: #fee2e2;
+            color: #dc2626;
+        }
+
+        .file-sentiment-badge.neutral {
+            background-color: #f3f4f6;
+            color: #4b5563;
+        }
+
+        .file-preview {
+            color: #475569;
+            font-size: 0.95em;
+            line-height: 1.5;
+        }
+
+        .file-footer {
+            margin-top: 8px;
+            font-size: 0.85em;
+            color: #64748b;
+            text-align: right;
+        }
+
+        .recording-indicator {
+            display: none;
+            color: var(--danger-color);
+            text-align: center;
+            margin: 10px 0;
+            font-weight: bold;
+            animation: pulse 1s infinite;
+        }
+
+        .recording-indicator.active {
+            display: block;
+        }
+
+        .status-message {
+            padding: 10px;
+            border-radius: 6px;
+            text-align: center;
+            margin: 10px 0;
+            font-weight: 500;
+        }
+
+        .status-ready {
+            background-color: #f3f4f6;
+            color: #4b5563;
+        }
+
+        .status-recording {
+            background-color: #fee2e2;
+            color: var(--danger-color);
+        }
+
+        .status-processing {
+            background-color: #dbeafe;
+            color: var(--primary-color);
+        }
+
+        #audioFileInput {
+            display: none;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="sidebar">
+            <h1 class="heading">Audio Analyzer</h1>
+            
+            <div class="controls">
+                <button id="recordButton" class="button record-button">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="6"></circle>
+                    </svg>
+                    Start Recording
+                </button>
+                
+                <input type="file" id="audioFileInput" accept="audio/*">
+                <button id="uploadButton" class="button upload-button">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                        <polyline points="17 8 12 3 7 8"></polyline>
+                        <line x1="12" y1="3" x2="12" y2="15"></line>
+                    </svg>
+                    Upload Audio
+                </button>
+
+                <button id="clearButton" class="button clear-button">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3-3h6M6 6h12"></path>
+                    </svg>
+                    Clear Results
+                </button>
+            </div>
+
+            <div id="recordingIndicator" class="recording-indicator">Recording in progress...</div>
+            <div id="statusMessage" class="status-message status-ready">Ready to analyze audio</div>
+
+            <div class="saved-files">
+                <h2 class="heading" style="font-size: 1.2em;">Saved Transcripts</h2>
+                {% if transcript_files %}
+                    <div class="file-list">
+                        {% for file in transcript_files %}
+                        <div class="file-item" onclick="loadTranscript('{{ file.filename }}')">
+                            <div class="file-header">
+                                <div class="file-timestamp">{{ file.timestamp }}</div>
+                                <div class="file-sentiment-badge {{ file.sentiment.lower() }}">
+                                    {{ file.sentiment }}
+                                </div>
+                            </div>
+                            <div class="file-preview">{{ file.preview }}...</div>
+                            <div class="file-footer">
+                                {{ file.confidence }}
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    <div class="status-message status-ready">
+                        No transcripts available yet
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="main-content">
+            <div id="results" class="result-section">
+                <div class="result-card">
+                    <div class="result-card-header">
+                        <h2 class="result-card-title">Transcript</h2>
+                    </div>
+                    <div class="result-card-content">
+                        <div id="transcriptText" class="transcript">
+                            Waiting for audio input...
+                        </div>
+                    </div>
+                </div>
+
+                <div class="result-card">
+                    <div class="result-card-header">
+                        <h2 class="result-card-title">Sentiment Analysis</h2>
+                    </div>
+                    <div class="result-card-content">
+                        <div id="sentimentText" class="sentiment neutral">
+                            Waiting for analysis...
+                        </div>
+                        <div id="confidenceScore" class="confidence-score">
+                            Confidence Score: --
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const recordButton = document.getElementById('recordButton');
+        const uploadButton = document.getElementById('uploadButton');
+        const clearButton = document.getElementById('clearButton');
+        const audioFileInput = document.getElementById('audioFileInput');
+        const recordingIndicator = document.getElementById('recordingIndicator');
+        const statusMessage = document.getElementById('statusMessage');
+        const transcriptText = document.getElementById('transcriptText');
+        const sentimentText = document.getElementById('sentimentText');
+        const confidenceScore = document.getElementById('confidenceScore');
+
+        let isRecording = false;
+
+        function updateStatus(message, type) {
+            statusMessage.textContent = message;
+            statusMessage.className = `status-message status-${type}`;
+        }
+
+        function getSentimentClass(sentiment) {
+            switch(sentiment.toLowerCase()) {
+                case 'positive': return 'positive';
+                case 'negative': return 'negative';
+                default: return 'neutral';
+            }
+        }
+
+        function displayResults(data) {
+            if (data && data.status === 'success') {
+                localStorage.setItem('lastAnalysis', JSON.stringify(data));
+            }
+            
+            transcriptText.textContent = data.transcript || 'No transcript available';
+
+            const sentiment = data.sentiment_analysis;
+            if (sentiment) {
+                sentimentText.textContent = `Overall Sentiment: ${sentiment.overall_sentiment}`;
+                sentimentText.className = `sentiment ${getSentimentClass(sentiment.overall_sentiment)}`;
+                confidenceScore.textContent = `Confidence Score: ${(sentiment.confidence_score * 100).toFixed(1)}%`;
+            }
+        }
+
+        function clearResults() {
+            localStorage.removeItem('lastAnalysis');
+            transcriptText.textContent = 'Waiting for audio input...';
+            sentimentText.textContent = 'Waiting for analysis...';
+            sentimentText.className = 'sentiment neutral';
+            confidenceScore.textContent = 'Confidence Score: --';
+            updateStatus('Ready to analyze audio', 'ready');
+        }
+
+        function loadLastAnalysis() {
+            const lastAnalysis = localStorage.getItem('lastAnalysis');
+            if (lastAnalysis) {
+                const data = JSON.parse(lastAnalysis);
+                displayResults(data);
+            }
+        }
+
+        async function checkMicrophonePermissions() {
+            try {
+                const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+                stream.getTracks().forEach(track => track.stop());
+            } catch (err) {
+                updateStatus('Microphone access denied', 'error');
+                recordButton.disabled = true;
+            }
+        }
+
+        recordButton.addEventListener('click', async () => {
+            if (!isRecording) {
+                try {
+                    const response = await fetch('/start_recording', {
+                        method: 'POST'
+                    });
+
+                    if (!response.ok) throw new Error('Failed to start recording');
+                    
+                    isRecording = true;
+                    recordButton.innerHTML = `
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="6" y="6" width="12" height="12"></rect>
+                        </svg>
+                        Stop Recording
+                    `;
+                    recordButton.classList.add('recording');
+                    recordingIndicator.classList.add('active');
+                    updateStatus('Recording in progress...', 'recording');
+                } catch (error) {
+                    updateStatus(error.message, 'error');
+                }
+            } else {
+                try {
+                    updateStatus('Processing audio...', 'processing');
+                    const response = await fetch('/stop_recording', {
+                        method: 'POST'
+                    });
+
+                    if (!response.ok) throw new Error('Failed to process recording');
+                    const data = await response.json();
+                    
+                    if (data.status === 'error') {
+                        throw new Error(data.message);
+                    }
+                    
+                    displayResults(data);
+                    updateStatus('Analysis complete', 'ready');
+                    setTimeout(() => {
+                        window.location.reload(); // Reload to update saved files list
+                    }, 2000); // Wait 2 seconds before reloading
+                } catch (error) {
+                    updateStatus(error.message, 'error');
+                } finally {
+                    isRecording = false;
+                    recordButton.innerHTML = `
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="6"></circle>
+                        </svg>
+                        Start Recording
+                    `;
+                    recordButton.classList.remove('recording');
+                    recordingIndicator.classList.remove('active');
+                }
+            }
+        });
+
+        uploadButton.addEventListener('click', () => {
+            audioFileInput.click();
+        });
+
+        audioFileInput.addEventListener('change', async (event) => {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            const formData = new FormData();
+            formData.append('audio', file);
+
+            try {
+                updateStatus('Processing audio...', 'processing');
+                const response = await fetch('/upload', {
+                    method: 'POST',
+                    body: formData
+                });
+
+                if (!response.ok) throw new Error('Failed to process audio');
+                const data = await response.json();
+                
+                if (data.status === 'error') {
+                    throw new Error(data.message);
+                }
+                
+                displayResults(data);
+                updateStatus('Analysis complete', 'ready');
+                setTimeout(() => {
+                    window.location.reload(); // Reload to update saved files list
+                }, 2000); // Wait 2 seconds before reloading
+            } catch (error) {
+                updateStatus(error.message, 'error');
+            } finally {
+                audioFileInput.value = '';
+            }
+        });
+
+        async function loadTranscript(filename) {
+            try {
+                updateStatus('Loading transcript...', 'processing');
+                const response = await fetch(`/transcripts/${filename}`);
+                if (!response.ok) throw new Error('Failed to load transcript');
+                
+                const data = await response.json();
+                if (data.status === 'error') {
+                    throw new Error(data.message);
+                }
+                
+                displayResults(data);
+                updateStatus('Transcript loaded', 'ready');
+            } catch (error) {
+                updateStatus(error.message, 'error');
+            }
+        }
+
+        clearButton.addEventListener('click', clearResults);
+
+        // Keyboard shortcuts
+        document.addEventListener('keydown', (e) => {
+            // Start/Stop recording with spacebar
+            if (e.code === 'Space' && !e.target.matches('input, textarea')) {
+                e.preventDefault();
+                recordButton.click();
+            }
+            
+            // Upload with Ctrl+U
+            if (e.ctrlKey && e.code === 'KeyU') {
+                e.preventDefault();
+                uploadButton.click();
+            }
+
+            // Clear with Ctrl+L
+            if (e.ctrlKey && e.code === 'KeyL') {
+                e.preventDefault();
+                clearButton.click();
+            }
+        });
+
+        // Handle page visibility
+        document.addEventListener('visibilitychange', () => {
+            if (document.hidden && isRecording) {
+                recordButton.click(); // Stop recording if page is hidden
+                updateStatus('Recording stopped - page was hidden', 'error');
+            }
+        });
+
+        // Handle page unload
+        window.addEventListener('beforeunload', (event) => {
+            if (isRecording) {
+                event.preventDefault();
+                event.returnValue = 'Recording in progress. Are you sure you want to leave?';
+            }
+        });
+
+        // Initialize the page
+        document.addEventListener('DOMContentLoaded', async () => {
+            await checkMicrophonePermissions();
+            loadLastAnalysis();
+            updateStatus('Ready to analyze audio', 'ready');
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,4 @@
+Transcript: Hello, how are you?
+Sentiment: Neutral
+Analysis: Very brief text. The tone appears to be neutral (sentiment score: 0.00). Contains questions.
+Metrics: {'word_count': 4, 'sentence_count': 1, 'sentiment_score': 0.0}

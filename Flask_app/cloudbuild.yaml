@@ -1,0 +1,13 @@
+steps:
+  # Build the container image
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['build', '-t', 'gcr.io/cproject-436307/audio-analyzer', '.']
+  
+  # Push the container image to Container Registry
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', 'gcr.io/cproject-436307/audio-analyzer']
+
+images:
+  - 'gcr.io/cproject-436307/audio-analyzer'
+
+timeout: '1800s'

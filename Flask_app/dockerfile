@@ -1,0 +1,32 @@
+FROM python:3.9-slim
+
+# Install system dependencies including build tools
+RUN apt-get update && apt-get install -y \
+    portaudio19-dev \
+    python3-all-dev \
+    python3-pyaudio \
+    libsndfile1 \
+    gcc \
+    make \
+    && rm -rf /var/lib/apt/lists/*
+
+# Set working directory
+WORKDIR /app
+
+# Copy requirements first to leverage Docker cache
+COPY requirements.txt .
+
+# Install Python dependencies
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copy application code
+COPY . .
+
+# Create necessary directories
+RUN mkdir -p uploads transcripts templates
+
+# Expose the port the app runs on
+EXPOSE 8080
+
+# Command to run the application
+CMD ["python", "app.py"]

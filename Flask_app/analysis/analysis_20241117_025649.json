@@ -1,0 +1,9 @@
+{
+  "status": "success",
+  "transcript": "Error processing audio file: Audio file could not be read as PCM WAV, AIFF/AIFF-C, or Native FLAC; check if file is corrupted or in another format",
+  "sentiment_analysis": {
+    "error": "Sentiment analysis failed: Unknown model publishers/google/models/gemini-pro; {'gs://google-cloud-aiplatform/schema/predict/instance/text_generation_1.0.0.yaml': <class 'vertexai.language_models.TextGenerationModel'>}"
+  },
+  "timestamp": "2024-11-17T02:56:49.679309",
+  "filename": "upload_20241117_025648_tts_audio_b8729f15-932f-4790-af5a-e610f1a26c4b.mp3"
+}

@@ -1,0 +1,14 @@
+{
+  "status": "success",
+  "transcript": "1 2, 3 4.",
+  "sentiment_analysis": {
+    "overall_sentiment": "neutral",
+    "confidence_score": 0.5,
+    "key_phrases": [
+      "1 2, 3"
+    ],
+    "emotional_tones": [
+      "Neutral"
+    ]
+  }
+}

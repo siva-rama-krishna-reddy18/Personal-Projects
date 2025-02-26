@@ -1,0 +1,20 @@
+{
+  "status": "success",
+  "output_directory": "analysis\\20241117_040950_recording_20241117_040950",
+  "files": {
+    "original_audio": "analysis\\20241117_040950_recording_20241117_040950\\original_recording_20241117_040950.wav",
+    "converted_audio": null,
+    "transcript": "analysis\\20241117_040950_recording_20241117_040950\\transcript.txt"
+  },
+  "transcript": "",
+  "sentiment_analysis": {
+    "overall_sentiment": "neutral",
+    "confidence_score": 0.5,
+    "sentiment_score": 0.0,
+    "sentiment_magnitude": 0.0,
+    "key_phrases": [],
+    "emotional_tones": [
+      "Neutral"
+    ]
+  }
+}

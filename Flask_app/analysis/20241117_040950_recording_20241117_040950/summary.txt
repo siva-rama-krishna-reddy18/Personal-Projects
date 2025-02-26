@@ -1,0 +1,18 @@
+Audio Analysis Summary
+=====================
+
+Analysis Date: 2024-11-17 04:09:52
+Original File: recording_20241117_040950.wav
+
+Transcript:
+-----------
+
+
+Sentiment Analysis:
+------------------
+Overall Sentiment: neutral
+Confidence Score: 50.00%
+Emotional Tones: Neutral
+
+Key Phrases:
+-----------

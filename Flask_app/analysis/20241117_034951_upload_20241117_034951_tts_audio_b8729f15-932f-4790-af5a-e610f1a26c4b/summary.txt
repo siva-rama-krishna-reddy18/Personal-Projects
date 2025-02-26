@@ -1,0 +1,19 @@
+Audio Analysis Summary
+=====================
+
+Analysis Date: 2024-11-17 03:49:56
+Original File: upload_20241117_034951_tts_audio_b8729f15-932f-4790-af5a-e610f1a26c4b.mp3
+
+Transcript:
+-----------
+Hello, how are you?
+
+Sentiment Analysis:
+------------------
+Overall Sentiment: neutral
+Confidence Score: 50.00%
+Emotional Tones: Neutral
+
+Key Phrases:
+-----------
+- Hello, how are

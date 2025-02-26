@@ -1,0 +1,15 @@
+{
+  "status": "success",
+  "transcript": "Text to speech and speech to text application.",
+  "sentiment_analysis": {
+    "overall_sentiment": "neutral",
+    "confidence_score": 0.5,
+    "key_phrases": [
+      "Text to speech",
+      "and speech to"
+    ],
+    "emotional_tones": [
+      "Neutral"
+    ]
+  }
+}

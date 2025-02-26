@@ -1,0 +1,8 @@
+Flask==2.0.1
+flask-cors==3.0.10
+google-cloud-speech==2.21.0
+google-cloud-language==2.11.0
+PyAudio==0.2.13
+soundfile==0.12.1
+librosa==0.10.1
+numpy==1.24.3

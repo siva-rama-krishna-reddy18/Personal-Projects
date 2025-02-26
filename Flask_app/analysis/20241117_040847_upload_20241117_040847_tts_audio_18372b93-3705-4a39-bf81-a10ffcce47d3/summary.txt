@@ -1,0 +1,18 @@
+Audio Analysis Summary
+=====================
+
+Analysis Date: 2024-11-17 04:08:47
+Original File: upload_20241117_040847_tts_audio_18372b93-3705-4a39-bf81-a10ffcce47d3.mp3
+
+Transcript:
+-----------
+Very bad.
+
+Sentiment Analysis:
+------------------
+Overall Sentiment: negative
+Confidence Score: 10.00%
+Emotional Tones: Negative, Moderately Negative
+
+Key Phrases:
+-----------

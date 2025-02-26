@@ -1,0 +1,4 @@
+Transcript: 
+Sentiment: Neutral
+Analysis: Empty or whitespace-only text provided
+Metrics: {}

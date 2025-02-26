@@ -1,0 +1,23 @@
+{
+  "status": "success",
+  "output_directory": "analysis\\20241117_040640_upload_20241117_040640_tts_audio_e27a36d1-b5ad-4cb2-8db7-7b38b8a61c67",
+  "files": {
+    "original_audio": "analysis\\20241117_040640_upload_20241117_040640_tts_audio_e27a36d1-b5ad-4cb2-8db7-7b38b8a61c67\\original_upload_20241117_040640_tts_audio_e27a36d1-b5ad-4cb2-8db7-7b38b8a61c67.mp3",
+    "converted_audio": "analysis\\20241117_040640_upload_20241117_040640_tts_audio_e27a36d1-b5ad-4cb2-8db7-7b38b8a61c67\\converted_audio.wav",
+    "transcript": "analysis\\20241117_040640_upload_20241117_040640_tts_audio_e27a36d1-b5ad-4cb2-8db7-7b38b8a61c67\\transcript.txt"
+  },
+  "transcript": "Text to speech and speech to text application.",
+  "sentiment_analysis": {
+    "overall_sentiment": "neutral",
+    "confidence_score": 0.5,
+    "sentiment_score": 0.0,
+    "sentiment_magnitude": 0.0,
+    "key_phrases": [
+      "Text to speech",
+      "and speech to"
+    ],
+    "emotional_tones": [
+      "Neutral"
+    ]
+  }
+}
