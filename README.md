@@ -75,19 +75,28 @@ Deploy to Cloud Run:
 bashCopygcloud run deploy audio-analyzer --image gcr.io/your-project-id/audio-analyzer --platform managed
 
 
-Project Structure
+**Project Structure**
 Copyaudio-analyzer/
 ├── app.py              # Main Flask application
+
 ├── Dockerfile          # Container configuration
+
 ├── requirements.txt    # Python dependencies
+
 ├── static/             # Static assets
+
 ├── templates/          # HTML templates
+
 │   └── index.html      # Main application interface
+
 ├── uploads/            # Temporary audio file storage
+
 └── transcripts/        # Analysis results storage
-Dependencies
+
+**Dependencies**
 
 Flask: Web framework
+
 google-cloud-speech: Speech-to-Text API client
 google-cloud-language: Natural Language API client
 librosa: Audio processing
@@ -95,14 +104,15 @@ soundfile: Audio file handling
 gunicorn: WSGI HTTP Server
 Tailwind CSS: Frontend styling
 
-Limitations and Future Improvements
-Current Limitations
+**Limitations and Future Improvements**
+
+**Current Limitations**
 
 Maximum audio file size: 16MB
 Recording time limit: 5 minutes
 English language support only
 
-Planned Improvements
+**Planned Improvements**
 
 Batch processing capability
 Additional language support
@@ -120,7 +130,9 @@ RecordRTC library for audio recording capabilities
 
 **Author**
 Siva Rama Krishna Reddy Kunchala
+
 kunchalas2023@fau.edu
+
 GCP Project Information
 
 Project Name/Id: cproject/cproject-436307
