@@ -1,4 +1,5 @@
-**Audio Analyzer Application**
+  **Audio Analyzer Application**
+
 A web-based application that provides advanced speech analysis capabilities, combining speech recognition with sentiment analysis to help users understand both the content and emotional context of spoken words.
 Show Image
 Overview
@@ -52,7 +53,7 @@ User Interface → Results Display
 **Installation**
 
 Clone the repository:
-bashCopygit clone https://github.com/yourusername/audio-analyzer.git
+bashCopygit clone https://github.com/siva-rama-krishna-reddy18/audio-analyzer.git
 cd audio-analyzer
 
 Install dependencies:
